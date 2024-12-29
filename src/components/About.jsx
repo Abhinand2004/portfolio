@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -68,7 +69,7 @@ const About = () => {
             whileHover="hover"
             whileTap="tap" 
           >
-            Get in Touch
+            <Link to="contact">Get in Touch</Link>
           </motion.button>
         </div>
       </motion.div>

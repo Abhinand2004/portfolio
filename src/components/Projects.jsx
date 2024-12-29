@@ -17,7 +17,7 @@ const Projects = () => {
       description:
         "Designed and developed a fully functional eCommerce platform enabling seamless browsing, cart management, and checkout functionalities. Built a responsive and user-friendly front-end using React.js, ensuring optimal user experience across devices. Developed and integrated RESTful APIs using Node.js and Express.js for user authentication, product management.",
       techStack: ["React", "Node.js", "Express", "MongoDB"],
-      github: "https://github.com/Abhinand2004/oilex_model.git",
+      github: "https://github.com/Abhinand2004/olx_model.git",
     },
     {
       title: "Social Media Website",
