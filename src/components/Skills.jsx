@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useInView } from '@react-spring/web'; // Correct import
 
 const skills = [
   { name: 'HTML', color: 'bg-yellow-500', icon: '🔤' },
@@ -30,13 +31,31 @@ const skillVariants = {
 };
 
 const Skills = () => {
+  
+  const [ref, inView] = useInView({
+    triggerOnce: true, 
+    threshold: 0.1, 
+  });
+
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-900">
+    <div className="flex flex-col items-center min-h-screen bg-gray-900 pt-32">
+
+      <motion.h1
+        className="text-4xl font-bold text-teal-400 mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, type: 'spring' }}
+      >
+        I am Skillful In
+      </motion.h1>
+
+   
       <motion.div
         className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 p-10 bg-gray-800 rounded-lg shadow-xl"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        animate={inView ? "visible" : "hidden"} 
+        ref={ref}
       >
         {skills.map((skill, index) => (
           <motion.div
@@ -64,4 +83,3 @@ const Skills = () => {
 };
 
 export default Skills;
-
