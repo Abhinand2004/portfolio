@@ -40,6 +40,33 @@ const About = () => {
     tap: { scale: 0.95, transition: { duration: 0.1 } },
   };
 
+  // Function to split text into individual characters and animate them
+  const splitText = (text) => {
+    return text.split("").map((char, index) => (
+      char === " " ? (
+        <span key={index}>&nbsp;</span> // Non-animated space
+      ) : (
+        <motion.span
+          key={index}
+          className="inline-block"
+          initial={{ opacity: 0, color: "transparent" }} // Start with transparent color
+          animate={
+            isVisible
+              ? { opacity: 1, color: "#00bcd4" } // Animate to teal color
+              : { opacity: 0, color: "transparent" }
+          }
+          transition={{
+            delay: index * 0.1, // Delay for each character to create staggered effect
+            duration: 0.5,
+            type: "spring",
+          }}
+        >
+          {char}
+        </motion.span>
+      )
+    ));
+  };
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-900 p-4 about-container">
       <motion.div 
@@ -53,15 +80,19 @@ const About = () => {
         <h1 className="text-4xl font-bold text-teal-400 mb-4">
           About Me
         </h1>
+        
+        {/* Animated text for "I am Abhinand" */}
         <h2 className="text-2xl font-semibold text-gray-300 mb-4">
-          I am Abhinand
+          {splitText("I am Abhinand")}
         </h2>
+        
         <p className="text-gray-400 text-lg">
           I am a MERN Stack student, currently seeking job opportunities. Coding
           is my passion, and I enjoy creating efficient web applications using
           MongoDB, Express.js, React, and Node.js. My goal is to contribute to
           meaningful projects and enhance my skills every day.
         </p>
+        
         <div className="mt-8">
           <motion.button 
             className="bg-teal-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-teal-600 transition-colors duration-300"

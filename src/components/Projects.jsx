@@ -59,6 +59,14 @@ const Projects = () => {
             animate={inView ? "visible" : "hidden"}
             variants={boxVariants}
             transition={{ duration: 0.5, delay: index * 0.2 }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
+              transition: { duration: 0.3 },
+            }}
+            whileTap={{
+              scale: 0.98,
+            }}
           >
             <h2 className="text-2xl font-semibold text-teal-400 mb-2">
               {project.title}

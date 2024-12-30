@@ -1,69 +1,91 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaBriefcase } from 'react-icons/fa';
 
-const pageVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -50 },
-};
-
-const formVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: { opacity: 1, scale: 1 },
-};
-
+// Add custom CSS for animation inside the component using styled-jsx (for scoped styling)
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsVisible(prevState => !prevState);
+    }, 3000); // Loop every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <motion.div
-      className="py-20 px-10 bg-gray-900"
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      variants={pageVariants}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.h2
-        className="text-4xl font-bold text-center mb-6 text-teal-400"
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        Contact Me
-      </motion.h2>
-      <motion.form
-        className="max-w-xl mx-auto space-y-4"
-        initial="hidden"
-        animate="visible"
-        variants={formVariants}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <motion.input
-          type="text"
-          placeholder="Your Name"
-          className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white"
-          whileFocus={{ scale: 1.05 }}
-        />
-        <motion.input
-          type="email"
-          placeholder="Your Email"
-          className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white"
-          whileFocus={{ scale: 1.05 }}
-        />
-        <motion.textarea
-          placeholder="Your Message"
-          className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white"
-          rows="5"
-          whileFocus={{ scale: 1.05 }}
-        ></motion.textarea>
-        <motion.button
-          className="w-full px-4 py-3 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+    <div className="py-20 px-10 bg-gray-900 flex flex-col items-center">
+      <div className="flex flex-col md:flex-row md:items-start w-full max-w-4xl">
+        <h2
+          className={`text-6xl font-extrabold text-teal-400 mb-6 md:mb-0 md:mr-10 md:text-left ${isVisible ? 'animate-fadeInOut' : ''}`}
         >
-          Send Message
-        </motion.button>
-      </motion.form>
-    </motion.div>
+          Let's Build
+          <br />
+          Something
+          <br />
+          Great Together
+        </h2>
+        <form className="w-full max-w-xl mx-auto md:w-1/2 space-y-4">
+          <input
+            type="text"
+            placeholder="Your Name"
+            className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-teal-400"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-teal-400"
+          />
+          <textarea
+            placeholder="Your Message"
+            className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white border border-teal-400"
+            rows="5"
+          ></textarea>
+          <button className="w-full px-4 py-3 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500">
+            Send Message
+          </button>
+        </form>
+      </div>
+      <div className="flex justify-center mt-8 space-x-4">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <FaGithub size={32} className="text-white hover:text-yellow-400" />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin size={32} className="text-white hover:text-yellow-400" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <FaInstagram size={32} className="text-white hover:text-yellow-400" />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter size={32} className="text-white hover:text-yellow-400" />
+        </a>
+        <a href="https://indeed.com" target="_blank" rel="noopener noreferrer">
+          <FaBriefcase size={32} className="text-white hover:text-yellow-400" />
+        </a>
+      </div>
+
+      {/* Inline styling for custom animation */}
+      <style jsx>{`
+        @keyframes fadeInOut {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          50% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+        }
+
+        .animate-fadeInOut {
+          animation: fadeInOut 3s ease-in-out infinite;
+        }
+      `}</style>
+    </div>
   );
 };
 
