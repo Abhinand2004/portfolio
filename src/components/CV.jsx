@@ -1,7 +1,10 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const Resume = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "-50px" });
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, type: "spring" } },
@@ -10,6 +13,13 @@ const Resume = () => {
   const headerVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: { opacity: 1, y: 0, transition: { duration: 1, type: "spring" } },
+  };
+
+  const cardHover = {
+    hover: {
+      scale: 1.05,
+      boxShadow: "0px 10px 20px rgba(0, 255, 255, 0.3)",
+    },
   };
 
   return (
@@ -28,12 +38,18 @@ const Resume = () => {
       </motion.header>
 
       {/* Resume Content */}
-      <div className="max-w-4xl w-full bg-gray-800 shadow-lg rounded-lg p-6 lg:p-12">
+      <motion.div
+        ref={sectionRef}
+        className="max-w-4xl w-full bg-gray-800 shadow-lg rounded-lg p-6 lg:p-12"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={sectionVariants}
+      >
         {/* Summary Section */}
         <motion.section
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="mb-8"
         >
           <h2 className="text-2xl font-bold text-teal-400 mb-4">Summary</h2>
@@ -46,17 +62,21 @@ const Resume = () => {
           </p>
         </motion.section>
 
-        {/* Experience Section */}
+        {/* Professional Experience Section */}
         <motion.section
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="mb-8"
         >
           <h2 className="text-2xl font-bold text-teal-400 mb-4">
             Professional Experience
           </h2>
-          <div>
+          <motion.div
+            variants={cardHover}
+            whileHover="hover"
+            className="p-4 bg-gray-700 rounded-md"
+          >
             <h3 className="font-semibold text-yellow-400">Synnefo-solutions</h3>
             <p className="text-sm text-gray-400 mb-2">2024 - Present</p>
             <ul className="list-disc list-inside">
@@ -70,18 +90,22 @@ const Resume = () => {
               </li>
               <li>Optimized application performance using modern techniques.</li>
             </ul>
-          </div>
+          </motion.div>
         </motion.section>
 
         {/* Projects Section */}
         <motion.section
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="mb-8"
         >
           <h2 className="text-2xl font-bold text-teal-400 mb-4">Projects</h2>
-          <div>
+          <motion.div
+            variants={cardHover}
+            whileHover="hover"
+            className="p-4 bg-gray-700 rounded-md"
+          >
             <h3 className="font-semibold text-yellow-400">E-Commerce Website</h3>
             <p>
               Built a fully functional eCommerce platform with features like
@@ -95,8 +119,12 @@ const Resume = () => {
             >
               GitHub Repository
             </a>
-          </div>
-          <div className="mt-4">
+          </motion.div>
+          <motion.div
+            variants={cardHover}
+            whileHover="hover"
+            className="p-4 bg-gray-700 rounded-md mt-4"
+          >
             <h3 className="font-semibold text-yellow-400">
               Social Media Platform
             </h3>
@@ -112,14 +140,14 @@ const Resume = () => {
             >
               GitHub Repository
             </a>
-          </div>
+          </motion.div>
         </motion.section>
 
         {/* Skills Section */}
         <motion.section
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="mb-8"
         >
           <h2 className="text-2xl font-bold text-teal-400 mb-4">Skills</h2>
@@ -133,16 +161,18 @@ const Resume = () => {
         <motion.section
           variants={sectionVariants}
           initial="hidden"
-          animate="visible"
+          animate={isInView ? "visible" : "hidden"}
           className="mb-8"
         >
           <h2 className="text-2xl font-bold text-teal-400 mb-4">Education</h2>
           <ul className="list-disc list-inside">
-            <li>Diploma in Computer Engineering (2021-2024) - IPT&GPTC Shoranur</li>
+            <li>
+              Diploma in Computer Engineering (2021-2024) - IPT&GPTC Shoranur
+            </li>
             <li>VHSC Shoranur (2019-2021)</li>
           </ul>
         </motion.section>
-      </div>
+      </motion.div>
     </div>
   );
 };
