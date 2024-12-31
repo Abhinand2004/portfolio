@@ -46,7 +46,7 @@ const Navbar = () => {
 
       {/* Desktop Menu */}
       <ul className="hidden lg:flex justify-center space-x-8 mt-4 lg:mt-0 max-w-7xl mx-auto">
-        {['home', 'about', 'skills', 'resume', 'projects', 'contact'].map((section) => (
+        {['home', 'about', 'skills',  'projects', 'contact'].map((section) => (
           <motion.li
             key={section}
             whileHover={{ scale: 1.1, color: '#fbbf24' }}
