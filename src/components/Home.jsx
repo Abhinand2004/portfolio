@@ -22,8 +22,7 @@ const Home = () => {
   const imageVariants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
-      opacity: 1,
-      x: 0,
+      opacity: 1, x: 0,
       transition: { duration: 1, type: "spring", delay: 0.4 },
     },
     hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } },
@@ -36,6 +35,15 @@ const Home = () => {
       transition: { delay: 1, duration: 1 },
     },
     hover: { scale: 1.1, boxShadow: "0px 5px 15px rgba(0,0,0,0.3)" },
+    pulse: {
+      scale: [1, 1.05, 1],
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "reverse",
+      },
+    },
   };
 
   const splitText = (text) => {
@@ -74,7 +82,7 @@ const Home = () => {
         variants={textVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="flex flex-col justify-center lg:w-2/3 text-left mt-6 lg:mt-0" // Added mt-6 for small screens
+        className="flex flex-col justify-center lg:w-2/3 text-left mt-6 lg:mt-0"
       >
         <h1 className="text-5xl lg:text-6xl font-bold mb-6 lg:pl-32">
           {splitText("Welcome to My Portfolio!")}
@@ -90,7 +98,8 @@ const Home = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             whileHover="hover"
-            className="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-lg shadow-lg hover:bg-teal-600 lg:px-8 lg:py-4"
+            whileInView="pulse"
+            className="px-6 py-3 bg-gradient-to-r from-teal-400 to-blue-600 text-black font-semibold rounded-full shadow-lg hover:from-blue-600 hover:to-teal-600 lg:px-8 lg:py-4"
           >
             <Link to="about" smooth={true} duration={500}>
               Learn More About Me
@@ -101,7 +110,8 @@ const Home = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             whileHover="hover"
-            className="px-6 py-3 bg-teal-400 text-black font-semibold rounded-lg shadow-lg hover:bg-yellow-400 lg:px-8 lg:py-4"
+            whileInView="pulse"
+            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-400 text-black font-semibold rounded-full shadow-lg hover:from-teal-600 hover:to-blue-600 lg:px-8 lg:py-4"
           >
             <Link to="projects" smooth={true} duration={500}>
               View My Projects

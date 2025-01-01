@@ -64,10 +64,9 @@ const About = () => {
           key={index}
           className="inline-block"
           initial={{ opacity: 0, color: "transparent" }}
-          animate={
-            isVisible
-              ? { opacity: 1, color: "#00bcd4" }
-              : { opacity: 0, color: "transparent" }
+          animate={isVisible
+            ? { opacity: 1, color: "#00bcd4" }
+            : { opacity: 0, color: "transparent" }
           }
           transition={{
             delay: index * 0.1,
@@ -79,6 +78,21 @@ const About = () => {
         </motion.span>
       )
     ));
+  };
+
+  // Add animation for "Nice to Meet You" with continuous effect
+  const titleVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.5,
+        ease: "easeOut",
+        repeat: Infinity,
+        repeatType: "reverse",
+      },
+    },
   };
 
   return (
@@ -102,9 +116,16 @@ const About = () => {
           animate={isVisible ? "visible" : "hidden"}
           variants={sectionVariants}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-teal-400 mb-4 text-center md:text-left">
+          {/* Animated "Nice to Meet You" Title */}
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold text-teal-400 mb-4 text-center md:text-left"
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            variants={titleVariants} // Apply the full-time animation variant here
+          >
             Nice to Meet You,
-          </h1>
+          </motion.h1>
+
           <motion.h2
             className="text-xl md:text-2xl font-semibold text-gray-300 mb-4"
             initial="hidden"
