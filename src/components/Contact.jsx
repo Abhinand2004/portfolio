@@ -102,9 +102,6 @@ const Contact = () => {
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
           <FaInstagram size={32} className="hover:text-yellow-400" />
         </a>
-        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <FaTwitter size={32} className="hover:text-yellow-400" />
-        </a>
         <a href="https://indeed.com" target="_blank" rel="noopener noreferrer">
           <FaBriefcase size={32} className="hover:text-yellow-400" />
         </a>
