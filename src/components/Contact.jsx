@@ -93,16 +93,16 @@ const Contact = () => {
         </form>
       </div>
       <div className="flex justify-center mt-8 space-x-4">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/Abhinand2004" target="_blank" rel="noopener noreferrer">
           <FaGithub size={32} className="hover:text-yellow-400" />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+        <a href="www.linkedin.com/in/abhinand-c-a588332b2" target="_blank" rel="noopener noreferrer">
           <FaLinkedin size={32} className="hover:text-yellow-400" />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.instagram.com/_abhinand_011/" target="_blank" rel="noopener noreferrer">
           <FaInstagram size={32} className="hover:text-yellow-400" />
         </a>
-        <a href="https://indeed.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://profile.indeed.com/?hl=en_IN&co=IN&from=gnav-homepage" target="_blank" rel="noopener noreferrer">
           <FaBriefcase size={32} className="hover:text-yellow-400" />
         </a>
       </div>

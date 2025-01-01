@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import profile from "../assets/profile.jpg";
+import profile from "../assets/profile.png";
 import { Link } from "react-scroll";
 
 const Home = () => {
@@ -10,7 +10,6 @@ const Home = () => {
     threshold: 0.1,
   });
 
-  // Text animation variants
   const textVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: {
@@ -20,7 +19,6 @@ const Home = () => {
     },
   };
 
-  // Image animation variants with hover effects
   const imageVariants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
@@ -31,7 +29,6 @@ const Home = () => {
     hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } },
   };
 
-  // Button animation variants with hover effect
   const buttonVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -41,24 +38,23 @@ const Home = () => {
     hover: { scale: 1.1, boxShadow: "0px 5px 15px rgba(0,0,0,0.3)" },
   };
 
-  // Function to split text into individual characters and animate them
   const splitText = (text) => {
     return text.split("").map((char, index) => {
       if (char === " ") {
-        return <span key={index}>&nbsp;</span>; // Render a normal space
+        return <span key={index}>&nbsp;</span>;
       }
       return (
         <motion.span
           key={index}
           className="inline-block"
-          initial={{ opacity: 0, color: "transparent" }} // Start with transparent color
+          initial={{ opacity: 0, color: "transparent" }}
           animate={
             inView
-              ? { opacity: 1, color: "#00bcd4" } // Animate to teal color
+              ? { opacity: 1, color: "#00bcd4" }
               : { opacity: 0, color: "transparent" }
           }
           transition={{
-            delay: index * 0.1, // Delay for each character to create staggered effect
+            delay: index * 0.1,
             duration: 0.5,
             type: "spring",
           }}
@@ -70,14 +66,15 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gray-900 p-4 lg:pt-28 lg:px-0 pt-16" ref={ref}>
-  
-      {/* Left Section - Text and Buttons */}
+    <div
+      className="min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gray-900 p-4 lg:pt-28 lg:px-0 pt-16 pb-0"
+      ref={ref}
+    >
       <motion.div
         variants={textVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="flex flex-col justify-center lg:w-2/3 text-left"
+        className="flex flex-col justify-center lg:w-2/3 text-left mt-6 lg:mt-0" // Added mt-6 for small screens
       >
         <h1 className="text-5xl lg:text-6xl font-bold mb-6 lg:pl-32">
           {splitText("Welcome to My Portfolio!")}
@@ -87,8 +84,6 @@ const Home = () => {
           modern, scalable, and user-friendly web applications. Let’s explore
           my work together and bring ideas to life!
         </p>
-
-        {/* Button Section */}
         <div className="flex justify-center lg:justify-start mt-6 space-x-4 lg:pl-32">
           <motion.button
             variants={buttonVariants}
@@ -101,7 +96,6 @@ const Home = () => {
               Learn More About Me
             </Link>
           </motion.button>
-
           <motion.button
             variants={buttonVariants}
             initial="hidden"
@@ -115,8 +109,6 @@ const Home = () => {
           </motion.button>
         </div>
       </motion.div>
-
-      {/* Right Section - Profile Image */}
       <motion.div
         className="flex flex-col items-center justify-center lg:w-1/3 mt-12 lg:mt-0"
         variants={imageVariants}
@@ -127,7 +119,7 @@ const Home = () => {
         <img
           src={profile}
           alt="Abhinand"
-          className="rounded-full shadow-lg w-64 lg:w-72 h-64 lg:h-72 object-cover mb-6"
+          className="rounded-full w-80 lg:w-96 h-80 lg:h-96 object-cover mb-6 bg-gray-900"
         />
       </motion.div>
     </div>
