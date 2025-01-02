@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaBriefcase } from "react-icons/fa";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase"; // Ensure the correct path to firebase.js
-
+import { db } from "../firebase"; 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",

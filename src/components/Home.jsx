@@ -22,7 +22,8 @@ const Home = () => {
   const imageVariants = {
     hidden: { opacity: 0, x: 50 },
     visible: {
-      opacity: 1, x: 0,
+      opacity: 1,
+      x: 0,
       transition: { duration: 1, type: "spring", delay: 0.4 },
     },
     hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } },
@@ -77,6 +78,7 @@ const Home = () => {
     <div
       className="min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gray-900 p-4 lg:pt-28 lg:px-0 pt-16 pb-0"
       ref={ref}
+      id="home"
     >
       <motion.div
         variants={textVariants}
@@ -101,7 +103,7 @@ const Home = () => {
             whileInView="pulse"
             className="px-6 py-3 bg-gradient-to-r from-teal-400 to-blue-600 text-black font-semibold rounded-full shadow-lg hover:from-blue-600 hover:to-teal-600 lg:px-8 lg:py-4"
           >
-            <Link to="about" smooth={true} duration={500}>
+            <Link to="about" smooth={true} duration={500} offset={-50}>
               Learn More About Me
             </Link>
           </motion.button>
@@ -113,23 +115,30 @@ const Home = () => {
             whileInView="pulse"
             className="px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-400 text-black font-semibold rounded-full shadow-lg hover:from-teal-600 hover:to-blue-600 lg:px-8 lg:py-4"
           >
-            <Link to="projects" smooth={true} duration={500}>
+            <Link to="projects" smooth={true} duration={500} offset={-50}>
               View My Projects
             </Link>
           </motion.button>
         </div>
       </motion.div>
       <motion.div
-        className="flex flex-col items-center justify-center lg:w-1/3 mt-12 lg:mt-0"
+        className="relative flex flex-col items-center justify-center lg:w-1/3 mt-12 lg:mt-0 -ml-2 lg:-ml-4"
         variants={imageVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         whileHover="hover"
       >
+        <motion.div
+          className="absolute inset-0 w-[26rem] h-[26rem] lg:w-[30rem] lg:h-[30rem] rounded-full bg-gradient-to-r from-teal-400 via-blue-600 to-purple-600 animate-spin-slow"
+          style={{
+            animationDuration: "10s",
+          }}
+        ></motion.div>
+        <div className="absolute inset-0 w-[24rem] h-[24rem] lg:w-[28rem] lg:h-[28rem] rounded-full bg-teal-500 blur-2xl opacity-20"></div>
         <img
           src={profile}
           alt="Abhinand"
-          className="rounded-full w-80 lg:w-96 h-80 lg:h-96 object-cover mb-6 bg-gray-900"
+          className="rounded-full w-[22rem] lg:w-[28rem] h-[22rem] lg:h-[28rem] object-cover mb-6 bg-gray-900 z-10"
         />
       </motion.div>
     </div>

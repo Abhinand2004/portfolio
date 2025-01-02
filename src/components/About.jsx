@@ -40,7 +40,7 @@ const About = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      rotate: [0, 10, -10, 0], // Add a small wobble effect
+      rotate: [0, 10, -10, 0], 
       transition: { duration: 1, type: "spring" },
     },
   };
@@ -80,7 +80,6 @@ const About = () => {
     ));
   };
 
-  // Add animation for "Nice to Meet You" with continuous effect
   const titleVariants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
@@ -96,8 +95,8 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center bg-gray-900 p-4 pt-0">
-      <div className="about-container flex flex-col md:flex-row max-w-5xl w-full h-auto md:h-[80vh] rounded-lg shadow-lg p-6">
+    <div className="min-h-screen flex justify-center items-center bg-gray-900 p-4 pt-0 overflow-hidden">
+      <div className="about-container flex flex-col md:flex-row max-w-5xl w-full h-auto md:h-[80vh] max-h-screen rounded-lg shadow-lg p-6">
         <motion.div
           className="w-full md:w-1/4 h-48 md:h-full mb-6 md:mb-0 hidden md:block"
           initial="hidden"
@@ -107,7 +106,7 @@ const About = () => {
           <img
             src={avatar}
             alt="avatar"
-            className="w-full h-full object-cover rounded-lg shadow-lg"
+            className="w-full h-full object-cover rounded-lg max-h-full max-w-full" 
           />
         </motion.div>
         <motion.div
@@ -116,12 +115,11 @@ const About = () => {
           animate={isVisible ? "visible" : "hidden"}
           variants={sectionVariants}
         >
-          {/* Animated "Nice to Meet You" Title */}
           <motion.h1
             className="text-4xl md:text-5xl font-bold text-teal-400 mb-4 text-center md:text-left"
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
-            variants={titleVariants} // Apply the full-time animation variant here
+            variants={titleVariants} 
           >
             Nice to Meet You,
           </motion.h1>

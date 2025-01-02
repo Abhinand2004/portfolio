@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useInView } from '@react-spring/web'; // Correct import
+import { useInView } from '@react-spring/web'; 
 
 const skills = [
   { name: 'HTML', color: 'bg-yellow-500', icon: '🔤' },
@@ -46,7 +46,7 @@ const Skills = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, type: 'spring' }}
       >
-        I am Skillful In
+        I am Skillfull In
       </motion.h1>
 
    
