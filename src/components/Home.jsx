@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import profile from "../assets/profile.png";
 import { Link } from "react-scroll";
+import profile from "../assets/profile.png"; 
+import popupimg from "../assets/popupimg.png"; 
 
 const Home = () => {
   const [ref, inView] = useInView({
@@ -17,16 +18,6 @@ const Home = () => {
       x: 0,
       transition: { duration: 0.8, type: "spring", delay: 0.4 },
     },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 1, type: "spring", delay: 0.4 },
-    },
-    hover: { scale: 1.1, rotate: 5, transition: { duration: 0.3 } },
   };
 
   const buttonVariants = {
@@ -44,6 +35,20 @@ const Home = () => {
         repeat: Infinity,
         repeatType: "reverse",
       },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+    disappear: {
+      opacity: 0,
+      y: -50,
+      transition: { delay: 2.5, duration: 1.5, ease: "easeInOut" },
     },
   };
 
@@ -76,25 +81,26 @@ const Home = () => {
 
   return (
     <div
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-between bg-gray-900 p-4 lg:pt-28 lg:px-0 pt-16 pb-0"
-      ref={ref}
-      id="home"
-    >
+  className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gray-900 px-4 lg:px-0 pt-24 sm:pt-16 pb-6" // Adjust pt-24 for large screens and pt-16 for small screens
+  ref={ref}
+  id="home"
+>
+
       <motion.div
         variants={textVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="flex flex-col justify-center lg:w-2/3 text-left mt-6 lg:mt-0"
+        className="flex flex-col justify-center text-left mt-6 lg:mt-0 max-w-3xl mx-auto lg:ml-16"
       >
-        <h1 className="text-5xl lg:text-6xl font-bold mb-6 lg:pl-32">
+        <h1 className="text-4xl lg:text-6xl font-bold mb-8 text-center">
           {splitText("Welcome to My Portfolio!")}
         </h1>
-        <p className="text-lg lg:text-2xl text-gray-300 mb-6 max-w-3xl lg:pl-32">
+        <p className="text-base lg:text-2xl text-gray-300 mb-8 mx-auto text-center">
           I am Abhinand, a passionate MERN Stack Developer dedicated to building
           modern, scalable, and user-friendly web applications. Let’s explore
           my work together and bring ideas to life!
         </p>
-        <div className="flex justify-center lg:justify-start mt-6 space-x-4 lg:pl-32">
+        <div className="flex flex-col justify-center items-center lg:flex-row mt-8 space-y-4 lg:space-y-0 lg:space-x-4">
           <motion.button
             variants={buttonVariants}
             initial="hidden"
@@ -122,25 +128,43 @@ const Home = () => {
         </div>
       </motion.div>
       <motion.div
-        className="relative flex flex-col items-center justify-center lg:w-1/3 mt-12 lg:mt-0 -ml-2 lg:-ml-4"
+        className="lg:w-1/3 mt-8 lg:mt-0 flex items-center justify-center lg:mr-16"
         variants={imageVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        whileHover="hover"
       >
-        <motion.div
-          className="absolute inset-0 w-[26rem] h-[26rem] lg:w-[30rem] lg:h-[30rem] rounded-full bg-gradient-to-r from-teal-400 via-blue-600 to-purple-600 animate-spin-slow"
-          style={{
-            animationDuration: "10s",
-          }}
-        ></motion.div>
-        <div className="absolute inset-0 w-[24rem] h-[24rem] lg:w-[28rem] lg:h-[28rem] rounded-full bg-teal-500 blur-2xl opacity-20"></div>
-        <img
-          src={profile}
-          alt="Abhinand"
-          className="rounded-full w-[22rem] lg:w-[28rem] h-[22rem] lg:h-[28rem] object-cover mb-6 bg-gray-900 z-10"
-        />
+        <div className="relative w-[18rem] lg:w-[28rem] h-[18rem] lg:h-[28rem] bg-gray-900 transform rotate-2 hover:rotate-0 transition-transform duration-300 flex items-center justify-center">
+         
+          <div className="absolute top-0 left-0 transform translate-x-4 translate-y-4 flex items-center justify-center w-8 h-8 bg-gray-900 rounded-full shadow-md">
+            <div className="w-4 h-4 bg-gray-600 rounded-full"></div>
+            <div className="w-1 h-8 bg-gray-600 absolute top-4"></div>
+          </div>
+
+          
+          <img
+            src={profile}
+            alt="profile"
+            className="w-full h-full object-cover rounded-lg shadow-2xl"
+          />
+        </div>
       </motion.div>
+
+     
+      <motion.div
+  className={`fixed left-8 ${inView ? 'bottom-[-10px]' : 'bottom-[-70px]'} w-[150px] h-[150px] overflow-hidden lg:block hidden`}
+  style={{ transition: 'bottom 0.5s ease-in-out' }}
+>
+  <img
+    src={popupimg} 
+    alt="popup"
+    className="w-full h-full object-cover"
+  />
+</motion.div>
+
+
+
+
+
     </div>
   );
 };
