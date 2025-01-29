@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-scroll";
-import profile from "../assets/profile.png"; 
+import profile from "../assets/abhi.png"; 
 import popupimg from "../assets/popupimg.png"; 
 
 const Home = () => {
