@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaGithub, FaLinkedin, FaInstagram, FaTwitter, FaBriefcase } from "react-icons/fa";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase"; 
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,6 +42,7 @@ const Contact = () => {
 
   return (
     <div className="bg-gray-900 text-white py-20 px-10 flex flex-col items-center">
+
       <div className="flex flex-col md:flex-row md:items-start w-full max-w-4xl">
         <h2 className="text-4xl md:text-6xl font-extrabold mb-6 md:mb-0 md:mr-10 text-teal-400 animate-jump">
           Let's Build

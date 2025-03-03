@@ -80,11 +80,10 @@ const Home = () => {
   };
 
   return (
-    <div
-  className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gray-900 px-4 lg:px-0 pt-24 sm:pt-16 pb-6" // Adjust pt-24 for large screens and pt-16 for small screens
-  ref={ref}
-  id="home"
->
+    
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-gray-900 px-4 lg:px-0 pt-24 sm:pt-16 pb-6" ref={ref} id="home">
+
+
 
       <motion.div
         variants={textVariants}

@@ -74,7 +74,7 @@ const Navbar = () => {
             exit="hidden"
             variants={menuVariants}
           >
-            {['home', 'about', 'skills', 'resume', 'projects', 'contact'].map((section) => (
+            {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
               <motion.li
                 key={section}
                 whileHover={{ scale: 1.1, color: '#fbbf24' }}

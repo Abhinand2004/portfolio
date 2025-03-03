@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import avatar from "../assets/avatar.png";
-
+import  CursorFollower from "./BubbleCursor"
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -94,8 +94,11 @@ const About = () => {
     },
   };
 
+  
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-900 p-4 pt-0 overflow-hidden">
+      < CursorFollower/>
       <div className="about-container flex flex-col md:flex-row max-w-5xl w-full h-auto md:h-[80vh] max-h-screen rounded-lg shadow-lg p-6">
         <motion.div
           className="w-full md:w-1/4 h-48 md:h-full mb-6 md:mb-0 hidden md:block"
